@@ -1,0 +1,4 @@
+/Users/machuanzhi/Desktop/Concurrent Memory Pool/build/CMakeFiles/MyLib.dir
+/Users/machuanzhi/Desktop/Concurrent Memory Pool/build/CMakeFiles/test.dir
+/Users/machuanzhi/Desktop/Concurrent Memory Pool/build/CMakeFiles/edit_cache.dir
+/Users/machuanzhi/Desktop/Concurrent Memory Pool/build/CMakeFiles/rebuild_cache.dir

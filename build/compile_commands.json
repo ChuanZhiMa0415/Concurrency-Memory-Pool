@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/Users/machuanzhi/Desktop/Concurrent Memory Pool/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -o CMakeFiles/MyLib.dir/src/CentralCache.cc.o -c \"/Users/machuanzhi/Desktop/Concurrent Memory Pool/src/CentralCache.cc\"",
+  "file": "/Users/machuanzhi/Desktop/Concurrent Memory Pool/src/CentralCache.cc",
+  "output": "CMakeFiles/MyLib.dir/src/CentralCache.cc.o"
+},
+{
+  "directory": "/Users/machuanzhi/Desktop/Concurrent Memory Pool/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -o CMakeFiles/MyLib.dir/src/ThreadCache.cc.o -c \"/Users/machuanzhi/Desktop/Concurrent Memory Pool/src/ThreadCache.cc\"",
+  "file": "/Users/machuanzhi/Desktop/Concurrent Memory Pool/src/ThreadCache.cc",
+  "output": "CMakeFiles/MyLib.dir/src/ThreadCache.cc.o"
+},
+{
+  "directory": "/Users/machuanzhi/Desktop/Concurrent Memory Pool/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -o CMakeFiles/MyLib.dir/src/PageCache.cc.o -c \"/Users/machuanzhi/Desktop/Concurrent Memory Pool/src/PageCache.cc\"",
+  "file": "/Users/machuanzhi/Desktop/Concurrent Memory Pool/src/PageCache.cc",
+  "output": "CMakeFiles/MyLib.dir/src/PageCache.cc.o"
+},
+{
+  "directory": "/Users/machuanzhi/Desktop/Concurrent Memory Pool/build",
+  "command": "/usr/bin/clang++  -I\"/Users/machuanzhi/Desktop/Concurrent Memory Pool/Include\" -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -o CMakeFiles/test.dir/UnitTest.cc.o -c \"/Users/machuanzhi/Desktop/Concurrent Memory Pool/UnitTest.cc\"",
+  "file": "/Users/machuanzhi/Desktop/Concurrent Memory Pool/UnitTest.cc",
+  "output": "CMakeFiles/test.dir/UnitTest.cc.o"
+}
+]

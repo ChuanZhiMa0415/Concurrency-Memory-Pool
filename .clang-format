@@ -1,0 +1,19 @@
+BasedOnStyle: LLVM
+Language: Cpp
+TabWidth: 4
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+AllowShortBlocksOnASingleLine: Always      # 允许 {} 包裹的代码块单行
+AllowShortLoopsOnASingleLine: true         # 允许循环单行
+AllowShortFunctionsOnASingleLine: Inline   # 类内联函数单行
+BinPackArguments: false                    # 函数参数不自动换行
+BinPackParameters: false
+BreakBeforeBraces: Attach                  # 大括号不换行
+ColumnLimit: 0                           # 宽松的行宽限制
+IndentWidth: 4
+PointerAlignment: Right                    # 指针符号右对齐（与你的代码一致）
+SpaceBeforeParens: ControlStatements       # 控制语句括号前加空格
+SpacesInParentheses: false                 # 括号内不加空格
+UseTab: Never
+
+AllowShortIfStatementsOnASingleLine: true  # 允许无 else 的 if 单行

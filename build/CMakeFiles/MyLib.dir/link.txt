@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMyLib.a CMakeFiles/MyLib.dir/src/CentralCache.cc.o CMakeFiles/MyLib.dir/src/ThreadCache.cc.o CMakeFiles/MyLib.dir/src/PageCache.cc.o
+/usr/bin/ranlib libMyLib.a

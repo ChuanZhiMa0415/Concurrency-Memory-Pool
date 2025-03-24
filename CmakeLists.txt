@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.15)
+
+project(test)
+
+set(CMAKE_CXX_STANDARD 11)
+
+# 添加库文件
+add_library(MyLib src/CentralCache.cc src/ThreadCache.cc src/PageCache.cc)
+add_executable(${PROJECT_NAME} UnitTest.cc)
+target_link_libraries(${PROJECT_NAME} PRIVATE MyLib)
+
+# 包含头文件
+target_include_directories(${PROJECT_NAME} PRIVATE Include)
