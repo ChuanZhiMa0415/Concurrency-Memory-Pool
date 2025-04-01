@@ -11,7 +11,8 @@
 	{
 		"commands" : 
 		[
-			"add_library"
+			"add_library",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -27,6 +28,12 @@
 				"file" : 0,
 				"line" : 8,
 				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
 			}
 		]
 	},
@@ -37,6 +44,13 @@
 			[
 				{
 					"fragment" : "-g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "/Users/machuanzhi/Desktop/Concurrent Memory Pool/Include"
 				}
 			],
 			"language" : "CXX",
