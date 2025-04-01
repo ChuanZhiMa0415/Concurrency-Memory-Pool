@@ -13,7 +13,7 @@ size_t CentralCache::fetchRangeObj(void *&start, void *&end, int totalCount, int
     // 从 Span 里拿 totalCount 个内存块
     end = start = pSpan->_freeList;
     size_t actualCount = 1;
-    while (actualCount <= totalCount && GetNext(end) != nullptr) end = GetNext(end), actualCount++;
+    while (actualCount < totalCount && GetNext(end) != nullptr) end = GetNext(end), actualCount++;
     pSpan->_freeList = GetNext(end), GetNext(end) = nullptr;
     pSpan->_useCount += actualCount;
 
@@ -36,7 +36,7 @@ Span *CentralCache::getOneSpan(SpanList &spanList, int size) {
     char *start = (char *)(pSpan->_pageID << PAGE_SHIFT);
     size_t bytes = pSpan->_pageCount << PAGE_SHIFT;
     char *end = start + bytes;
-    // 2. 切分 span 的空间，切成一个个小块内存(freeList 头插)
+    // 2. 切分 span 所管理的空间，切成一个个小块内存(freeList 头插)
     pSpan->_freeList = start;
     start += size;
     void *tail = pSpan->_freeList;

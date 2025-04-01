@@ -1,37 +1,62 @@
-#include "Common.hpp"
 #include "ConcurrentAlloc.hpp"
+#include <chrono>
+#include <cstdlib>
+#include <iostream>
 #include <thread>
+#include <vector>
 
-void Alloc1() {
-    for (size_t i = 0; i < 5; ++i) {
-        void *ptr = ConcurrentAlloc(6);
+const size_t ALLOC_SIZE = 643;      // 分配的内存大小
+const size_t ALLOC_COUNT = 10000000; // 每个线程分配的次数
+const size_t THREAD_COUNT = 4;     // 线程数量
+
+void BenchmarkMallocFree() {
+    for (size_t i = 0; i < ALLOC_COUNT; ++i) {
+        void *ptr = malloc(ALLOC_SIZE);
+        free(ptr);
     }
 }
 
-void Alloc2() {
-    for (size_t i = 0; i < 5; ++i) {
-        void *ptr = ConcurrentAlloc(7);
+void BenchmarkConcurrentAllocFree() {
+    for (size_t i = 0; i < ALLOC_COUNT; ++i) {
+        void *ptr = ConcurrentAlloc(ALLOC_SIZE);
+        ConcurrentFree(ptr, ALLOC_SIZE);
     }
 }
 
-void Alloc3() {
-    void *p1 = ConcurrentAlloc(MAX_PAGE_SIZE << PAGE_SHIFT);
-    // ConcurrentFree(p1, MAX_PAGE_SIZE << PAGE_SHIFT);
-    ConcurrentFree(p1);
-    cout << "free succeed" << endl;
+void RunBenchmark(void (*benchmarkFunc)(), const std::string &testName) {
+    auto start = std::chrono::high_resolution_clock::now();
+
+    std::vector<std::thread> threads;
+    for (size_t i = 0; i < THREAD_COUNT; ++i) {
+        threads.emplace_back(benchmarkFunc);
+    }
+
+    for (auto &t : threads) {
+        t.join();
+    }
+
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = end - start;
+
+    std::cout << testName << " took " << duration.count() << " seconds." << std::endl;
 }
 
-void TLSTest() {
-    std::thread t1(Alloc1);
-    t1.join();
-
-    std::thread t2(Alloc2);
-    t2.join();
+void SingleThreadTest() {
+    for (size_t i = 0; i < ALLOC_COUNT; ++i) {
+        void *ptr = ConcurrentAlloc(ALLOC_SIZE);
+        if (ptr == nullptr) {
+            std::cerr << "ConcurrentAlloc failed!" << std::endl;
+            return;
+        }
+        ConcurrentFree(ptr, ALLOC_SIZE);
+    }
 }
 
 int main() {
-    // TestObjectPool();
-    //  TLSTest();
-    Alloc3();
+    std::cout << "Performance Comparison: malloc/free vs ConcurrentAlloc/ConcurrentFree" << std::endl;
+
+    RunBenchmark(BenchmarkMallocFree, "malloc/free");
+    RunBenchmark(BenchmarkConcurrentAllocFree, "ConcurrentAlloc/ConcurrentFree");
+    // SingleThreadTest();
     return 0;
 }

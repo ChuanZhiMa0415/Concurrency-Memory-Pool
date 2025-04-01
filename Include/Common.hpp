@@ -12,10 +12,10 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-const int MAX_BYTES = 256 * 1024;
+const int MAX_BYTES = 256 * 1024; // 256 Kb
 const int FREELIST_SIZE = 208;
-const int MAX_PAGE_SIZE = 129;
-const int PAGE_SHIFT = 13;
+const int MAX_PAGE_SIZE = 129; // PAGE CACHE 的最大页为 128
+const int PAGE_SHIFT = 13; // 8 Kb
 
 /// @brief 获取下一个节点的地址
 /// @param obj 内存块地址
@@ -59,7 +59,7 @@ public:
     /// @brief 获取 freeLists 的下标
     /// @param size
     /// @return
-    static inline int getIndex(int memorySize) {
+    static inline int getIndex(int memorySize) { // 为什么要这样对齐：这样对齐的内存碎片率 ≤ 12.5%
         std::vector<int> groupArray = {16, 56, 56, 56};
         if (memorySize <= (1 << 7)) {
             return _getIndex(memorySize, 1 << 3);
@@ -159,7 +159,7 @@ public:
         _head = spanPool._new();
         _head->_next = _head->_prev = _head;
     }
-    inline void insert(Span *pos, Span *newSpan) { // prev <-> newSpan <-> pos
+    inline void insert(Span *pos, Span *newSpan) { // 最终效果：prev <-> newSpan <-> pos
         assert(newSpan != nullptr && pos != nullptr);
         Span *prev = pos;
         prev->_next = newSpan, newSpan->_prev = prev, newSpan->_next = pos, pos->_prev = newSpan;

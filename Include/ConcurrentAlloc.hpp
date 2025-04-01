@@ -2,6 +2,7 @@
 #include "Common.hpp"
 #include "PageCache.hpp"
 #include "ThreadCache.hpp"
+#include <mutex>
 
 inline void *ConcurrentAlloc(int size) {
     if (size > MAX_BYTES) {
@@ -20,8 +21,8 @@ inline void *ConcurrentAlloc(int size) {
     }
 }
 
-inline void ConcurrentFree(void *obj) {
-    int size = (PageCache::getSingleInstance().mapObjectToSpan(obj))->_objSize;
+inline void ConcurrentFree(void *obj, int size) {
+    // int size = (PageCache::getSingleInstance().mapObjectToSpan(obj))->_objSize;
     if (size > MAX_BYTES) {
         Span *span = PageCache::getSingleInstance().mapObjectToSpan(obj);
         PageCache::getSingleInstance()._mutex.lock();
